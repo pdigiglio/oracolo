@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -8,11 +7,12 @@
 
 int main ( void ) {
 	
-	/* seme per il numero casuale */
+	/* automatic seed for rand() */
 	srand( time( NULL )  );
 
+	/* answers */
 	char risposte[N][L] = {
-	  "Forse!",
+		"Forse!",
 		"Dipende dall'allineamento dei pianeti",
 		"Quarantatre!",
 		"Se te lo dicessi io, non impareresti nulla, sfaticato!",
@@ -41,21 +41,24 @@ int main ( void ) {
 
 	printf( "\n >> PRORACOLO: questo programma possiede la risposta ad ogni domanda!\n" );
 
+	/* define a null character */
 	char c = '\0';
+	/* infinite loop */
 	while( 1 ) {
 		printf( "Fai una domanda al Proracolo! [CTRL-D per uscire]\n> " );
 
 		/* read input */
 		do {
 			c = getchar();
-			if ( c == EOF ) {
+			if ( c == EOF ) { /* EOF = CTRL-D */
 				printf( "\nCiao sfigato!\n" );
 				return 0;
 			}
-				
-			/* till i don't break line */
+
+		/* till i don't break line */
 		} while ( c != '\n' );
 
+		/* pick up a random answer */
 		printf( "\n%s\n\n", *( risposte + rand() % N ) );
 	}
 
